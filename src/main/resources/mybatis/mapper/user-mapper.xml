@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.unit.mapper.UserMapper">
+    <insert id="joinUs">
+        INSERT INTO user (uid, upw, unm, utel)
+        VALUES (#{uid}, #{upw}, #{unm}, #{utel})
+    </insert>
+
+    <select id="login" resultType="uservo">
+        SELECT * FROM user WHERE uid = #{uid} AND upw = #{upw}
+    </select>
+
+    <update id="userUpdate">
+        UPDATE USER
+        SET
+        <if test="upw != null and utel != null">
+            UPW = #{ upw } , UTEL = #{ utel }
+        </if>
+        <if test="upw != null and utel == null">
+            UPW = #{ upw }
+        </if>
+        <if test="upw == null and utel != null">
+            UTEL = #{ utel }
+        </if>
+        WHERE UID = #{ uid }
+    </update>
+    <!--    나의 정보 보기 : SELECT O -->
+    <select id="userOne" resultType="uservo">
+        SELECT * FROM USER
+        WHERE UID = #{ uid }
+    </select>
+
+    <!--    회원탈퇴 : delete-->
+    <delete id="userDelete">
+        DELETE FROM USER WHERE UID = #{ uid }
+    </delete>
+
+    <select id="idChk" resultType="_int">
+        select count(*) from user where uid = #{uid}
+    </select>
+</mapper>
