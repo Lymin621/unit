@@ -1,7 +1,7 @@
 package kr.co.unit.mapper;
 
 
-import com.boot.board.vo.Board;
+import kr.co.unit.vo.Board;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

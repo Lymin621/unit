@@ -1,5 +1,5 @@
 package kr.co.unit.mapper;
-import com.boot.board.vo.User;
+import kr.co.unit.vo.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -16,4 +16,6 @@ public interface UserMapper {
 
         //회원 탈퇴
         int userDelete(String uid);
+
+        int idChk(String uid);
 }

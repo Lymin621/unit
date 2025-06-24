@@ -1,7 +1,7 @@
 package kr.co.unit.svc;
 
-import com.boot.board.mapper.BoardMapper;
-import com.boot.board.vo.Board;
+import kr.co.unit.mapper.BoardMapper;
+import kr.co.unit.vo.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
