@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Title</title>
+</head>
+<script>
+    function loadDoc() {
+        //비동기객체 생성
+        //"XMLHttpRequest 객체의 현재 상태 : UNSET(0) - XMLHttpRequest 객체가 생성됨";
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status ==200) {
+                console.log('xhttp.responseText: ', xhttp.responseText);
+                document.getElementById("demo").innerHTML = xhttp.responseText;
+            }
+        };
+
+        //형식 : open(전달방식, URL주소, 비동기여부);
+        //true-비동기, flase-동기방식
+        xhttp.open("GET", "/docs/ajax_info.txt", true);
+        xhttp.send(); //작성된 Ajax 요청을 서버로 전달한다.
+    }
+
+    function loadDoc2() {
+        const formData = new FormDate();
+        formDate.append('val1', document.getElementById('val1').value);
+        formDate.append('val2', document.getElementById('val2').value);
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status ==200) {
+                console.log('xhttp.responseText: ', xhttp.responseText);
+                document.getElementById("demo2").innerHTML = xhttp.responseText;
+            }
+        };
+
+        xhttp.open("POST", "/test.do", true);
+        xhttp.send(formData);
+    }
+
+    function loadDoc3() {
+        //load함수 => get방식의 데이터만 전송가능함.
+        $("#demo3").load("/test.do?id=admin&password=1111");
+        //$("#demo3").load("/docs/ajax_info.txt");
+    }
+</script>
+<body>
+    <button type="button" onclick="loadDoc()">Change Content</button>
+    <div id="demo">
+        <h2>The XMLHttpRequest Object</h2>
+    </div>
+<br><hr><br>
+
+입력1 : <input type="text" id="val1"><br>
+입력2 : <input type="text" id="val2"><br>
+<button type="button" onclick="loadDoc2()">Change Content2</button><br>
+<div id="demo2"></div>
+
+<br><hr><br>
+<button type="button" onclick="loadDoc3()">Change Content3</button><br>
+<div id="demo3"></div>
+</body>
+</html>

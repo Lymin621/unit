@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>test.do의 결과</h1>
+    <p>
+        비동기 방식의 결과입니다 <br>
+        지금 보내는 파일은 HTML파일입니다 <br>
+        데이터가 어떻게 보내는지 확인해보세요 <br>
+    </p>
+    <p th:if="${val1 !=null}" th:text="|받은 POST방식의 파라미터 값(val1): ${val1}|"></p>
+    <p th:if="${val2 !=null}" th:text="|받은 POST방식의 파라미터 값(val2): ${val2}|"></p>
+    <p th:if="${id !=null}" th:text="|받은 GET방식의 파라미터 값(id): ${id}|"></p>
+    <p th:if="${password !=null}" th:text="|받은 GET방식의 파라미터 값(password): ${password}|"></p>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+      /*
+              $(function(){
+                  $("button").click(function(){
+                  let idal = {"uid" : document.frm.id.value};
+                  $.ajax({
+                      url : "/idCheck",
+                      type : "post",
+
+                      //data : idval,
+                      //data : {uid : document.frm.id.value},
+                      data : JSON.stringify(idval),
+
+                      //contentType : 클라이언트에서 서버로 보내는 데이터 타입
+                      //contenrType : 'application/x-www-form-urlencoded; charset=utf-8',
+
+                      contentType : "application/json; charset=utf-8",
+                      cache : false,
+
+                      success : function(data) {
+                          console.log('success');
+                          alert(data);
+                      },
+                      error : function(){
+                          alert('error');
+                      }
+                  });
+                  });
+              });
+              */
+
+              window.onload = function(){
+                  document.querySelector('button').onclick = funtion(){
+                      async function postJSON(data){
+                          try{
+                              const response = await fetch("/idCheck",{
+                                  method: "POST",
+                                  headers: {
+                                      "Content-Type": "application/json",
+                                      },
+                                      body: JOSN.stringify(data),
+                                      });
+
+                           const result = await reponse.text();
+                           console.log("성공:", result);
+                         } catch (error) {
+                           console.error("실패:", error);
+                         }
+                        }
+                        constdata = {"uid" : document.frm.id.value};
+                        postJSON(data);
+                  };
+              };
+  </script>
+</head>
+<body>
+<form name="frm">
+  <input type="text" name="id">
+  <button type="button">아이디 중복체크</button>
+</form>
+</body>
+</html>
